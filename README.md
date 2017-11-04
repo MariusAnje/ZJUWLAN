@@ -3,6 +3,7 @@
 
 ---
 
+ZJUWLAN.py
 - **要求:**
 python3环境 urllib socket
 - **使用方法：**
@@ -11,3 +12,6 @@ python3环境 urllib socket
 可以直接双击.pyc文件或者将.pyc设置为开机启动
 - **测试：**
 紫金港校区没有问题
+---
+AUTOlogin.py
+这个文件和上一个差不多，但是花费的时间更加少
