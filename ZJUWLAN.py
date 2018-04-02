@@ -17,7 +17,7 @@ class ZJUWIFI:
         # 自己填写自己的账号和密码
         self.userid = 'xxxxxxxxx'
         self.passwd = 'xxxxx'
-        self.ip_pre = '10.189'
+        # self.ip_pre = '10.189'
 
     def login(self):
         isconnect = self.isConnect()
@@ -46,8 +46,8 @@ class ZJUWIFI:
                 'Content - Type': 'application/x-www-form-urlencoded',
                 'Host': 'net.zju.edu.cn',
                 'Origin': 'https: // net.zju.edu.cn',
-                'Referer': 'https://net.zju.edu.cn/srun_portal_pc.php?&ac_id=3',
-                'User - Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36',
+                'Referer': 'https://net.zju.edu.cn/srun_portal_phone.php?&ac_id=3',
+                'User - Agent': 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/14A456 Safari/602.1',
                 'X - Requested - With': 'XMLHttpRequest',
             }
             post_data = parse.urlencode(data).encode()
@@ -69,25 +69,25 @@ class ZJUWIFI:
             print('Something wrong! :( \n Plz try again!')
 
     # 获取本机无线上网的IP
-    def getIP(self):
-        local_iP = socket.gethostbyname(socket.gethostname())
-        if self.ip_pre in str(local_iP):
-            return str(local_iP)
-        ip_lists = socket.gethostbyname_ex(socket.gethostname())
-
-        for ip_list in ip_lists:
-            if isinstance(ip_list, list):
-                for i in ip_list:
-                    if self.ip_pre in str(i):
-                        return str(i)
-            elif isinstance(ip_list, str):
-                if self.ip_pre in ip_list:
-                    return ip_list
+    # def getIP(self):
+    #    local_iP = socket.gethostbyname(socket.gethostname())
+    #    if self.ip_pre in str(local_iP):
+    #        return str(local_iP)
+    #    ip_lists = socket.gethostbyname_ex(socket.gethostname())
+    #
+    #    for ip_list in ip_lists:
+    #        if isinstance(ip_list, list):
+    #            for i in ip_list:
+    #                if self.ip_pre in str(i):
+    #                    return str(i)
+    #        elif isinstance(ip_list, str):
+    #            if self.ip_pre in ip_list:
+    #                return ip_list
 
     def isConnect(self):
         # 判断是不是已经连接上ZJUWLAN
         denull = open(os.devnull, 'w')
-        result = subprocess.call('ping www.baidu.com', shell=True, stdout=denull, stderr=denull)
+        result = subprocess.call('ping www.baidu.com -w 5', shell=True, stdout=denull, stderr=denull)
         # 关闭设备
         denull.close()
         # 0代表着连接上网络，1代表没有连接上
@@ -99,9 +99,13 @@ class ZJUWIFI:
         # self.passwd = input('请输入密码：')
         # self.login()
         while True:
-            nowIP = self.getIP()
+            # nowIP = self.getIP()
             # print(nowIP)
-            if not nowIP:
+            denull = open(os.devnull, 'w')
+            result = subprocess.call('ping 10.203.6.101 -w 5', shell=True, stdout=denull, stderr=denull)
+            # 关闭设备
+            denull.close()
+            if not result:
                 print('还未连接ZJUWLAN!')
             else:
                 print('已连接ZJUWLAN,正在登陆账号密码，请不要关闭！')
