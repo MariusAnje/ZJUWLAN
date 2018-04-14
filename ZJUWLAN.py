@@ -47,7 +47,7 @@ class ZJUWIFI:
                 'Host': 'net.zju.edu.cn',
                 'Origin': 'https: // net.zju.edu.cn',
                 'Referer': 'https://net.zju.edu.cn/srun_portal_phone.php?&ac_id=3',
-                'User - Agent': 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/14A456 Safari/602.1',
+                'User - Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/14A456 Safari/602.1',
                 'X - Requested - With': 'XMLHttpRequest',
             }
             post_data = parse.urlencode(data).encode()
